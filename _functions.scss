@@ -1,5 +1,3 @@
-@use 'sass:selector';
-
 @function assert-equal($expected, $actual) {
   @if $expected != $actual {
     $this-selector: &;
