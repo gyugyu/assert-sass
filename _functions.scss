@@ -1,6 +1,9 @@
+@use 'sass:selector';
+
 @function assert-equal($expected, $actual) {
   @if $expected != $actual {
-    @error 'assert-equal failed. expected: #{$expected} actual: #{$actual}';
+    $this-selector: &;
+    @error '#{$this-selector}: assert-equal failed. expected: #{$expected} actual: #{$actual}';
   }
 
   @return '';
