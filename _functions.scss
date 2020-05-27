@@ -4,5 +4,14 @@
     @error '#{$this-selector}: assert-equal failed. expected: #{$expected} actual: #{$actual}';
   }
 
-  @return '';
+  @return 0;
+}
+
+@function assert-not-null($value) {
+  @if $value == null {
+    $this-selector: &;
+    @error '#{$this-selector}: assert-equal failed. expected: #{$expected} actual: #{$actual}';
+  }
+
+  @return 0;
 }
