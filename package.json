@@ -10,5 +10,16 @@
   "license": "MIT",
   "devDependencies": {
     "sass": "^1.26.5"
-  }
+  },
+  "peerDependencies": {
+    "sass": "^1.26.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gyugyu/assert-sass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gyugyu/assert-sass/issues"
+  },
+  "homepage": "https://github.com/gyugyu/assert-sass#readme"
 }

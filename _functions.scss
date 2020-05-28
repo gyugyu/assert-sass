@@ -1,4 +1,7 @@
-@function assert-equal($expected, $actual) {
+@use 'sass:list';
+@use 'sass:map';
+
+@function equal($expected, $actual) {
   @if $expected != $actual {
     $this-selector: &;
     @error '#{$this-selector}: assert-equal failed. expected: #{$expected} actual: #{$actual}';
@@ -7,10 +10,36 @@
   @return 0;
 }
 
-@function assert-not-null($value) {
+@function not-null($value) {
   @if $value == null {
     $this-selector: &;
     @error '#{$this-selector}: assert-not-null failed.';
+  }
+
+  @return 0;
+}
+
+@function contains-all-keys($map, $keys) {
+  $keys-not-contained: [];
+
+  @each $key in $keys {
+    @if not map.has-key($map, $key) {
+      list.append($keys-not-contained, $key);
+    }
+  }
+
+  @if list.length($keys-not-included) > 0 {
+    $this-selector: &;
+    @error '#{$this-selector}: keys #{$keys-not-contained} are not contained.';
+  }
+
+  @return 0;
+}
+
+@function fail($message) {
+  @if $value == null {
+    $this-selector: &;
+    @error '#{$this-selector}: #{$message}';
   }
 
   @return 0;
