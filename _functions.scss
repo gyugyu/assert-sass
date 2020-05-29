@@ -1,7 +1,7 @@
 @use 'sass:list';
 @use 'sass:map';
 
-@function equal($expected, $actual) {
+@function equals($expected, $actual) {
   @if $expected != $actual {
     $this-selector: &;
     @error '#{$this-selector}: assert-equal failed. expected: #{$expected} actual: #{$actual}';
@@ -24,7 +24,7 @@
 
   @each $key in $keys {
     @if not map.has-key($map, $key) {
-      list.append($keys-not-contained, $key);
+      $keys-not-contained: list.append($keys-not-contained, $key);
     }
   }
 
@@ -37,10 +37,7 @@
 }
 
 @function fail($message) {
-  @if $value == null {
-    $this-selector: &;
-    @error '#{$this-selector}: #{$message}';
-  }
-
+  $this-selector: &;
+  @error '#{$this-selector}: #{$message}';
   @return 0;
 }
