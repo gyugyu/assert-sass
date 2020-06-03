@@ -28,7 +28,7 @@
     }
   }
 
-  @if list.length($keys-not-included) > 0 {
+  @if list.length($keys-not-contained) > 0 {
     $this-selector: &;
     @error '#{$this-selector}: keys #{$keys-not-contained} are not contained.';
   }
