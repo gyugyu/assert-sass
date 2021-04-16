@@ -1,6 +1,6 @@
 {
   "name": "@gyugyu/assert-sass",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Assertion function library for Dart Sass",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

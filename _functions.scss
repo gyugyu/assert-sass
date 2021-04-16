@@ -1,10 +1,13 @@
 @use 'sass:list';
 @use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
 
 @function equals($expected, $actual) {
   @if $expected != $actual {
     $this-selector: &;
-    @error '#{$this-selector}: assert-equal failed. expected: #{$expected} actual: #{$actual}';
+
+    @error '#{$this-selector}: assert-equal failed. expected: #{-stringify($expected)} actual: #{-stringify($actual)}';
   }
 
   @return 0;
@@ -40,4 +43,26 @@
   $this-selector: &;
   @error '#{$this-selector}: #{$message}';
   @return 0;
+}
+
+@function -stringify($value) {
+  @if meta.type-of($value) == map {
+    $str: '(';
+    $keys: map.keys($value);
+    $len: list.length($keys);
+
+    @for $i from 1 through $len {
+      $k: list.nth($keys, $i);
+      $v: map.get($value, $k);
+      $str: $str + '#{$k}: #{-stringify($v)}';
+
+      @if $i != $len {
+        $str: $str + ', ';
+      }
+    }
+
+    @return $str + ')';
+  }
+
+  @return $value;
 }
